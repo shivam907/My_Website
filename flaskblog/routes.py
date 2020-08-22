@@ -5,7 +5,7 @@ from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from flaskblog import app, db, bcrypt, mail
 from flaskblog.forms import (RegistrationForm, LoginForm, UpdateAccountForm,
-                             PostForm, RequestResetForm, ResetPasswordForm)
+                             PostForm, RequestResetForm, ResetPasswordForm, aboutForm)
 from flaskblog.models import User, Post
 from flask_login import login_user, current_user, logout_user, login_required
 from flask_mail import Message
@@ -22,17 +22,20 @@ def home():
 
 @app.route("/about")
 def about():
-    # form = aboutForm()
-    # if form.picture.data:
-    #     picture_file = postpics(form.picture.data)
-    #     current_user.image_file = picture_file
-    #     db.session.commit()
-    #     flash('Your account has been updated!', 'success')
-    # return render_template('about.html')
-    # img_file = url_for('static', filename='postpics/' + current_user.image_file)
-    # return render_template('about.html', title='About',
-    #                     img_file=img_file, form=form)
-    return redirect('https://google.com')
+    form = aboutForm()
+    if form.picture.data:
+        picture_file = postpics(form.picture.data)
+        # img_file = picture_file
+
+        db.session.commit()
+        flash('Your account has been updated!', 'success') 
+        
+        return render_template('about.html')
+    # picture_file = postpics(form.picture.data)
+    img_file = url_for('static', filename='postpics/' + picture_file)
+    return render_template('about.html', title='About',
+                        img_file=img_file, form=form)
+    # return redirect('https://google.com')
 
 
 
@@ -266,4 +269,4 @@ def site():
 
 @app.route("/contact")
 def contact():
-    return render_template('contact.html', title='Contact US')
+    return render_template('contact.html', title='Contact Us')

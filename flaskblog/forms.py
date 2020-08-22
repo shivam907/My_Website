@@ -55,13 +55,13 @@ class UpdateAccountForm(FlaskForm):
             if user:
                 raise ValidationError('That email is taken. Please choose a different one.')
 
-
+ 
 
 class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
     # submit = SubmitField('Update')
-    picture = FileField('Pic')
+    picture = FileField('Pic', validators=[FileAllowed(['jpg', 'png'])])
     submit = SubmitField('👨🏻‍💻')
 
 
@@ -82,6 +82,6 @@ class ResetPasswordForm(FlaskForm):
                                      validators=[DataRequired(), EqualTo('password')])
     submit = SubmitField('Reset Password')
 
-# class aboutForm(FlaskForm):
-#     
-#     submit = SubmitField('Update')
+class aboutForm(FlaskForm):
+    picture = FileField('Pic', validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField('Update')
