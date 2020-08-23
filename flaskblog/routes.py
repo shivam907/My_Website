@@ -20,7 +20,7 @@ def home():
 
 
 
-@app.route("/about")
+@app.route("/about", methods=['GET', 'POST'])
 def about():
     form = aboutForm()
     if form.validate_on_submit():
@@ -32,7 +32,7 @@ def about():
             flash('Your account has been updated!', 'success') 
             
             return render_template('about.html')
-        # picture_file = postpics(form.picture.data)
+    picture_file = postpics(form.picture.data)
     img_file = url_for('static', filename='postpics/' + picture_file)
     return render_template('about.html', title='About',
                         img_file=img_file, form=form)
