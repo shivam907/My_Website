@@ -26,14 +26,15 @@ def about():
     if form.validate_on_submit():
         if form.picture.data:
             picture_file = postpics(form.picture.data)
+            current_post.img_file = picture_file
             # img_file = picture_file
 
-            db.session.commit()
-            flash('Your account has been updated!', 'success') 
+        db.session.commit()
+        flash('Your account has been updated!', 'success') 
             
-            return render_template('about.html')
-    picture_file = postpics(form.picture.data)
-    img_file = url_for('static', filename='postpics/' + picture_file)
+        return render_template('about.html')
+    # picture_file = postpics(form.picture.data)
+    img_file = url_for('static', filename='postpics/' + current_post.img_file)
     return render_template('about.html', title='About',
                         img_file=img_file, form=form)
     # return redirect('https://google.com')
