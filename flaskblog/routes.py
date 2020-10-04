@@ -26,7 +26,7 @@ def about():
     if form.validate_on_submit():
         if form.picture.data:
             picture_file = postpics(form.picture.data)
-            current_post.img_file = picture_file
+            current_user.img_file = picture_file
             # img_file = picture_file
 
         db.session.commit()
@@ -34,7 +34,7 @@ def about():
             
         return render_template('about.html')
     # picture_file = postpics(form.picture.data)
-    img_file = url_for('static', filename='postpics/' + current_post.img_file)
+    img_file = url_for('static', filename='postpics/' + current_user.img_file)
     return render_template('about.html', title='About',
                         img_file=img_file, form=form)
     # return redirect('https://google.com')
