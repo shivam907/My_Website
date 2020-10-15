@@ -61,8 +61,8 @@ class PostForm(FlaskForm):
     title = StringField('Title', validators=[DataRequired()])
     content = TextAreaField('Content', validators=[DataRequired()])
     # submit = SubmitField('Update')
-    picture = FileField('Pic', validators=[FileAllowed(['jpg', 'png'])])
-    submit = SubmitField('👨🏻‍💻')
+    img_file = FileField('Pic', validators=[FileAllowed(['jpg', 'png'])])
+    submit = SubmitField(' POST ')
 
 
 class RequestResetForm(FlaskForm):

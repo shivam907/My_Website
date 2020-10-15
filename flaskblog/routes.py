@@ -22,21 +22,7 @@ def home():
 
 @app.route("/about", methods=['GET', 'POST'])
 def about():
-    form = aboutForm()
-    if form.validate_on_submit():
-        if form.picture.data:
-            picture_file = postpics(form.picture.data)
-            current_user.img_file = picture_file
-            # img_file = picture_file
-
-        db.session.commit()
-        flash('Your account has been updated!', 'success') 
-            
-        return render_template('about.html')
-    # picture_file = postpics(form.picture.data)
-    img_file = url_for('static', filename='postpics/' + current_user.img_file)
-    return render_template('about.html', title='About',
-                        img_file=img_file, form=form)
+    return render_template('about.html', title='About')
     # return redirect('https://google.com')
 
 
@@ -138,38 +124,17 @@ def account():
 def new_post():
     form = PostForm()
     if form.validate_on_submit():
-        # if form.img_file.data:
-        # pic_file = postpics(form.img_file.data)
-        # db.session.add(form.img_file.data), img_file=form.img_file.data
-        post = Post(title=form.title.data, content=form.content.data, author=current_user)
+        if form.img_file.data:
+            pic_file = postpics(form.img_file.data)
+            db.session.add(form.img_file.data)
+            img_file=form.img_file.data
+        post = Post(title=form.title.data, content=form.content.data, author=current_user, img_file=form.img_file.data)
         db.session.add(post)
         db.session.commit()
         flash('Your post has been created!', 'success')
         return redirect(url_for('home'))
     return render_template('create_post.html', title='New Post',
                             form=form, legend='New Post')
-
-
-
-
-    # form = PostForm()
-    # if form.validate_on_submit():
-    #     # form2 = aboutForm()
-    #     if form.picture.data:
-    #         picture_file = postpics(form.picture.data)
-    #         post.img_file = picture_file
-    #     # db.session.commit()
-    #         img_file = url_for('static', filename='postpics/' + post.img_file)
-    #     # post = Post(title=form.title.data, content=form.content.data, author=current_user img_file=img_file)
-    #         post = Post(title=form.title.data, content=form.content.data, author=current_user, img_file=img_file)
-            
-    #         db.session.add(post)
-    #         db.session.commit()
-    #         flash('Your post has been created!', 'success')
-    #         return redirect(url_for('home'))
-    # img_file = url_for('static', filename='postpics/' + Post.img_file)
-    # return render_template('create_post.html', title='New Post',
-    #                        form=form, legend='New Post', img_file=Post.img_file)
 
 
 @app.route("/post/<int:post_id>")

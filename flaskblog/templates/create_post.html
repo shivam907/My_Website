@@ -31,11 +31,11 @@
                     {{ form.content(class="form-control form-control-lg") }}
                 {% endif %}
             </div>
-            <img class="rounded-circle account-img" src="{{ img_file }}">
+            <!-- <img class="rounded-circle account-img" src="{{ img_file }}"> -->
             <div class="form-group">
-                {{ form.picture.label() }}
-                {{ form.picture(class="form-control-file") }}
-                {% if form.picture.errors %}
+                {{ form.img_file.label() }}
+                {{ form.img_file(class="form-control-file") }}
+                {% if form.img_file.errors %}
                      {% for error in form.picture.errors %}
                         <span class="text-danger">{{ error }}</span></br>
                     {% endfor %}
