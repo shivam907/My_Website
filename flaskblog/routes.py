@@ -267,7 +267,7 @@ def reset_token(token):
     return render_template('reset_token.html', title='Reset Password', form=form)
 @app.route("/site")
 def site():
-    return redirect('https://www.cez.co.in')
+    return redirect('https://www.ceziot.com')
 
 @app.route("/contact")
 def contact():
