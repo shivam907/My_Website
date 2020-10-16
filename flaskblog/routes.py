@@ -1,6 +1,5 @@
 import os
 import secrets
-import pyperclip
 from PIL import Image
 from flask import render_template, url_for, flash, redirect, request, abort
 from flaskblog import app, db, bcrypt, mail
