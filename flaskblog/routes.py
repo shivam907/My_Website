@@ -85,6 +85,7 @@ def save_picture(form_picture):
 
     return picture_fn
 
+
 def postpics(form_picture):
     random_hex = secrets.token_hex(8)
     _, f_ext = os.path.splitext(form_picture.filename)
@@ -96,6 +97,7 @@ def postpics(form_picture):
     i.thumbnail(output_size)
     i.save(picture_path)
     return picture_fn
+
 
 @app.route("/account", methods=['GET', 'POST'])
 @login_required
@@ -229,9 +231,12 @@ def reset_token(token):
         flash('Your password has been updated! You are now able to log in', 'success')
         return redirect(url_for('login'))
     return render_template('reset_token.html', title='Reset Password', form=form)
+
+
 @app.route("/site")
 def site():
     return redirect('https://www.ceziot.com')
+
 
 @app.route("/contact")
 def contact():
