@@ -125,9 +125,9 @@ def new_post():
     form = PostForm()
     if form.validate_on_submit():
         if form.img_file.data:
-            pic_file = postpics(form.img_file.data)
+            img_file = postpics(form.img_file.data)
             db.session.add(form.img_file.data)
-            img_file=form.img_file.data
+            # img_file=form.img_file.data
         post = Post(title=form.title.data, content=form.content.data, author=current_user, img_file=form.img_file.data)
         db.session.add(post)
         db.session.commit()
