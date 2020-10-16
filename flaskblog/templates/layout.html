@@ -10,7 +10,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}"> {% if title %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}">
+    {% if title %}
     <title>CEZ - {{ title }}</title>
     {% else %}
     <title> CEZ</title>
@@ -28,7 +29,7 @@
         <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
             <div class="container">
                 <a class="navbar-brand mr-4" href="/">
-                    <!--  <img class="rounded-circle" src=></img> -->C E Z</a>
+                     <img class="rounded-circle" src='https://lh3.googleusercontent.com/s5oXzECl-dFQJty6d-1g3OEBKaZJO0muzdpDhv5HNpNqIsf6C7ggfnIq1KtZLU5xza4kFD0ObHntGbCv4zR6ouePxBOtJ1WawzHSwmZ8=s340' type="image/x-icon"></img>C E Z</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -36,15 +37,18 @@
                     <div class="navbar-nav mr-auto">
                         <a class="nav-item nav-link" href="{{ url_for('home') }}">Home</a>
                         <a class="nav-item nav-link" href="{{ url_for('about') }}">About</a>
+                        <a class="nav-item nav-link" href="{{ url_for('contact') }}">Query</a>
                     </div>
                     <!-- Navbar Right Side -->
                     <div class="navbar-nav">
                         {% if current_user.is_authenticated %}
                         <a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Post</a>
                         <a class="nav-item nav-link" href="{{ url_for('account') }}">Profile</a>
-                        <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a> {% else %}
+                        <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+                        {% else %}
                         <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
-                        <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a> {% endif %}
+                        <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+                        {% endif %}
                     </div>
                 </div>
             </div>
@@ -53,7 +57,7 @@
     <main role="main" class="container">
         <div class="row">
             <div class="col-md-8">
-                {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}
+                {% with messages = get_flashed_messages(with_categories=true) %} {% if messages %} {% for category, message in messages %}                                      
                 <div class="alert alert-{{ category }}">
                     {{ message }}
                 </div>
@@ -91,7 +95,7 @@
     <footer class="page-footer font-small blue" style="background-color: #5f788a">
 
         <div class="footer-copyright text-center py-3 fot">© 2020 Copyright:
-            <a class="fotlink" href="https://cez.co.in/"> C E Z</a>
+            <a class="fotlink" href="https://cez.co.in/"> C E Z </a>
         </div>
 
     </footer>
@@ -101,5 +105,4 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
-
 </html>
